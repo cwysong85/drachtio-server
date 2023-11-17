@@ -499,7 +499,7 @@ namespace drachtio
                 sip_method_unknown == sip_request->rq_method)
             {
 
-                throw std::runtime_error(string("invalid request-uri: ") + pData->getStartLine());
+                throw std::runtime_error(string("invalid request-uri (1): ") + pData->getStartLine());
             }
             sip_method_t method = parseStartLine(pData->getStartLine(), name, requestUri);
 
@@ -614,7 +614,7 @@ namespace drachtio
             {
                 if (requestUri.find("urn:") != 0)
                 {
-                    throw std::runtime_error(string("invalid request-uri: ") + requestUri);
+                    throw std::runtime_error(string("invalid request-uri (2): ") + requestUri);
                 }
             }
             if (requestUri.find("urn:") != 0 && isLocalSipUri(requestUri))
