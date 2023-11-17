@@ -612,12 +612,12 @@ namespace drachtio
             // prevent looping messages
             if (!normalizeSipUri(requestUri, 0))
             {
-                if (url_urn != sip_request->rq_url[0].url_type)
+                if (requestUri.find("urn:") != 0)
                 {
                     throw std::runtime_error(string("invalid request-uri: ") + requestUri);
                 }
             }
-            if (url_urn != sip_request->rq_url[0].url_type && isLocalSipUri(requestUri))
+            if (requestUri.find("urn:") != 0 && isLocalSipUri(requestUri))
             {
                 throw std::runtime_error("can not send request to myself");
             }
