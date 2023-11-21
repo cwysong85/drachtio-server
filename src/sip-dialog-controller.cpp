@@ -498,7 +498,8 @@ namespace drachtio
                 sip_method_invalid == sip_request->rq_method ||
                 sip_method_unknown == sip_request->rq_method)
             {
-
+                std::cout << "URL Type: " << sip_request->rq_url[0].url_type << std::endl;
+                std::cout << "Method: " << sip_request->rq_method << std::endl;
                 throw std::runtime_error(string("invalid request-uri (1): ") + pData->getStartLine());
             }
             sip_method_t method = parseStartLine(pData->getStartLine(), name, requestUri);
