@@ -492,14 +492,16 @@ namespace drachtio
             }
 
             sip_request_t *sip_request = sip_request_make(m_pController->getHome(), pData->getStartLine());
+
+            DR_LOG(log_debug) << "URL Type: " << sip_request->rq_url[0].url_type;
+            DR_LOG(log_debug) << "Method: " << sip_request->rq_method;
+
             if (NULL == sip_request ||
                 url_invalid == sip_request->rq_url[0].url_type ||
                 url_unknown == sip_request->rq_url[0].url_type ||
                 sip_method_invalid == sip_request->rq_method ||
                 sip_method_unknown == sip_request->rq_method)
             {
-                std::cout << "URL Type: " << sip_request->rq_url[0].url_type << std::endl;
-                std::cout << "Method: " << sip_request->rq_method << std::endl;
                 throw std::runtime_error(string("invalid request-uri (1): ") + pData->getStartLine());
             }
             sip_method_t method = parseStartLine(pData->getStartLine(), name, requestUri);
